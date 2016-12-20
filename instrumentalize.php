@@ -28,6 +28,8 @@ if(count($argv) !== 2) {
 $folderToScan = realpath($argv[1]);
 
 ini_set('xdebug.max_nesting_level', 3000);
+set_time_limit(3600);
+ini_set('memory_limit', '8096M');
 
 $scanner = new \Instrumentalizator\Scanner();
 
