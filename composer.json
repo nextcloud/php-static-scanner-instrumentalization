@@ -1,0 +1,10 @@
+{
+    "require": {
+        "nikic/PHP-Parser": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Instrumentalizator\\": "src/"
+        }
+    }
+}
