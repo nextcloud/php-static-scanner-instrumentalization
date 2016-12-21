@@ -40,6 +40,8 @@ class PublicFunctionVisitor extends NodeVisitorAbstract {
 				array_unshift($node->stmts, new Node\Expr\Assign($var, $expr));
 			}
 
+			$node->params = [];
+
 		}
 
 		return $node;

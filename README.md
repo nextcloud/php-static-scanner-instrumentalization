@@ -10,7 +10,7 @@ a `$_GET` on code related to the Nextcloud appframework. So the original code wo
 use OCP\AppFramework\Controller;
 
 class Foo extends Controller {
-    public function list($index) {
+    public function list($index, $bar) {
         // Logic of the code
     }
 }
@@ -24,8 +24,9 @@ the resulting code would look like:
 use OCP\AppFramework\Controller;
 
 class Foo extends Controller {
-    public function list($index) {
+    public function list() {
         $index = $_GET['index'];
+        $bar = $_GET['bar'];
         // Logic of the code
     }
 }
