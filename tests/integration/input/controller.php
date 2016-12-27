@@ -20,9 +20,14 @@
  */
 
 use OCP\AppFramework\Controller;
+use \OCP\AppFramework\Http\JSONResponse;
 
 class Foo extends Controller {
 	public function list($index, $bar) {
 		// Logic of the code
+	}
+
+	public function jsonResponse($name) {
+		return new JSONResponse("This is my $name");
 	}
 }
