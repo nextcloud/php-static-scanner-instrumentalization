@@ -19,6 +19,7 @@
  *
  */
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\JSONResponse;
 class Foo extends Controller
 {
     public function list()
@@ -26,5 +27,12 @@ class Foo extends Controller
         $bar = $_GET['bar'];
         $index = $_GET['index'];
         // Logic of the code
+    }
+    public function jsonResponse()
+    {
+        $name = $_GET['name'];
+        header('Content-Type:application/json; charset=utf-8');
+        header('X-Content-Type-Options: nosniff');
+        echo json_encode("This is my {$name}");
     }
 }
