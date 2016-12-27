@@ -1,0 +1,16 @@
+pipeline:
+  clone:
+    image: plugins/git
+    depth: 1
+  integration-tests:
+    image: nextcloudci/php7.1:php7.1-11
+    commands:
+      - php instrumentalize.php ./tests/integration/input/
+      - php ./tests/integration/diff.php
+    when:
+      matrix:
+        TESTS: integration-tests
+
+matrix:
+  include:
+    - TESTS: integration-tests
