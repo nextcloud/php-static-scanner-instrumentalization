@@ -74,14 +74,15 @@ class PublicFunctionVisitor extends NodeVisitorAbstract {
 					if($className === 'JSONResponse') {
 						$args = new Node\Arg(new Node\Expr\FuncCall(new Node\Name('json_encode'), $newNode->args));
 						$node->stmts[$key] = new Node\Stmt\Echo_([$args]);
+
+						$arg = new Node\Arg(new Node\Scalar\String_('Content-Type:application/json; charset=utf-8'));
+						$header = new Node\Expr\FuncCall(new Node\Name('header'), [$arg]);
+						$node->stmts = $this->insertBeforeKey($node->stmts, $header, $key);
+						$arg = new Node\Arg(new Node\Scalar\String_('X-Content-Type-Options: nosniff'));
+						$header = new Node\Expr\FuncCall(new Node\Name('header'), [$arg]);
+						$node->stmts = $this->insertBeforeKey($node->stmts, $header, $key + 1);
 					}
 
-					$arg = new Node\Arg(new Node\Scalar\String_('Content-Type:application/json; charset=utf-8'));
-					$header = new Node\Expr\FuncCall(new Node\Name('header'), [$arg]);
-					$node->stmts = $this->insertBeforeKey($node->stmts, $header, $key);
-					$arg = new Node\Arg(new Node\Scalar\String_('X-Content-Type-Options: nosniff'));
-					$header = new Node\Expr\FuncCall(new Node\Name('header'), [$arg]);
-					$node->stmts = $this->insertBeforeKey($node->stmts, $header, $key + 1);
 				}
 			}
 
